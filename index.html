@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Panel Press</title>
+<style>
+:root{--paper:#f6efdc;--ink:#1b1a2e;--navy:#232046;--red:#e8433c;--yel:#ffcf3f;--mut:#8a84a8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--navy);color:var(--paper);font:16px/1.4 "Trebuchet MS",system-ui,sans-serif;padding:calc(env(safe-area-inset-top) + 12px) 14px calc(env(safe-area-inset-bottom) + 24px)}
+h1{font:900 34px/1 Impact,"Arial Black",sans-serif;margin:6px 0 2px;color:var(--yel);transform:rotate(-1.5deg);text-shadow:3px 3px 0 var(--red)}
+p.s{color:var(--mut);margin:0 0 14px}
+label{display:block;font-weight:700;margin:14px 0 4px}
+textarea,input,select{width:100%;background:var(--paper);color:var(--ink);border:3px solid var(--ink);border-radius:4px;padding:10px;font:inherit}
+textarea{min-height:96px}
+button{background:var(--yel);color:var(--ink);border:3px solid var(--ink);border-radius:4px;padding:11px 14px;font:900 15px Impact,"Arial Black",sans-serif;box-shadow:3px 3px 0 var(--ink);margin:8px 8px 0 0}
+button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+button.go{background:var(--red);color:#fff}
+#bar{height:14px;background:var(--ink);border:2px solid var(--paper);margin-top:12px}#bar i{display:block;height:100%;width:0;background:var(--red)}
+#st{margin:6px 0;color:var(--yel);min-height:22px}
+#cast div{display:grid;grid-template-columns:90px 1fr 90px;gap:6px;align-items:center;margin-top:6px}
+#dr{position:fixed;top:0;right:0;width:78%;max-width:300px;height:100%;background:var(--ink);border-left:4px solid var(--yel);transform:translateX(105%);transition:transform .2s;padding:calc(env(safe-area-inset-top) + 16px) 14px;z-index:9;overflow:auto}#dr.o{transform:none}#dr button{width:100%;margin:8px 0 0}
+#mn{position:fixed;top:calc(env(safe-area-inset-top) + 8px);right:8px;z-index:8;margin:0;padding:4px 10px;font-size:20px}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:14px}
+.pg{background:var(--paper);color:var(--ink);border:3px solid var(--ink);padding:6px;font-size:13px}
+.pg img{width:100%;aspect-ratio:16/9;object-fit:cover;background:#ccc;display:block}
+.pg .e{aspect-ratio:16/9;display:grid;place-items:center;background:repeating-linear-gradient(45deg,#ddd,#ddd 6px,#eee 6px,#eee 12px);color:var(--mut)}
+.pg button{padding:6px 8px;font-size:12px;margin:4px 4px 0 0;box-shadow:2px 2px 0 var(--ink)}
+</style></head><body>
+<script>
+window.STORY={v:2,
+style:`full color manga art, clean ink outlines, warm cozy lighting, detailed cluttered clock shop interiors, painterly shading`,
+chars:`Arthur: elderly man late seventies, thick silver-white hair combed back, bushy silver eyebrows, small round wire-rimmed spectacles, brass loupe, white shirt with tweed vest, dark brown leather clockmaker's apron with pockets of tiny tools, gold pocket watch chain
+Clara: young woman mid-twenties, dark brown hair in a messy bun with loose strands, hazel eyes, warm smile, canvas apron trimmed in gold stitching, brass loupe on her forehead, rolled-up work shirt
+Leo: 9-year-old boy, messy tousled brown hair, light freckles, oversized canvas apron covered in badges, brass loupe on forehead, striped shirt, yellow raincoat outdoors
+Toby: 8-year-old boy, curly bright red hair, wide blue eyes, freckles, striped t-shirt, jeans, backpack, later a bright blue clockmaker's apron
+Grumpy Pigeon: plump gray harbor pigeon with ruffled feathers
+Mrs. Gable: elderly woman, curly white hair pinned neatly, rosy cheeks, small reading glasses, floral knit shawl over pastel cardigan, long wool skirt
+Captain Vance: tall broad-shouldered sea captain, thick salt-and-pepper gray beard, weathered skin, double-breasted navy peacoat with brass buttons, white peaked captain's cap, tall rubber sea boots
+Harbor Divers: two athletic adults in yellow and black neoprene wetsuits, boots, heavy gloves
+Chief Judge Sterling: tall dignified older man, neatly parted silver hair, large white handlebar mustache, gold-rimmed monocle, charcoal three-piece suit, silk cravat
+Rival Clockmakers: three smug sharply dressed engineers in sleek modern lab coats with metallic badges and stylish glasses
+Professor Finch: lanky energetic man in his sixties, wild fluffy white hair, round spectacles low on his nose, rumpled brown tweed jacket with elbow patches, patterned bow tie, corduroy trousers, large magnifying glass
+Mayor Jenkins: cheerful round-faced man in his fifties, graying sideburns, rosy cheeks, dark formal coat, top hat, blue-and-gold mayor's sash
+Elena: graceful young woman early twenties, long dark hair in a neat braid over one shoulder, warm dark eyes, cozy autumn coat with bright red knit scarf, wooden violin case
+Ranger Maya: athletic woman in her thirties, sun-kissed skin, dark ponytail under a wide-brimmed ranger hat, olive-green ranger uniform, leather utility belt, binoculars around her neck
+Dr. Aris Thorne: scholarly man in his fifties, neat graying beard and mustache, silver-streaked dark hair, thin rectangular glasses, long navy wool overcoat, starry silk scarf, tweed vest`,
+scenes:`Silver fog rolls off the Atlantic over coastal village Oakhaven at dawn. Arthur sits alone at his scarred maple workbench in a clock shop full of ticking grandfather clocks, holding tweezers over a watch spring under a brass lamp | Arthur: Forty-two years at this bench, and I still have no apprentice to pass my craft on to.
+Rain pounds the shop window. Clara steps in shaking water off her yellow raincoat and places a flannel-wrapped brass box on the mahogany counter while Arthur leans forward with curiosity | Clara: Two jewelers in the city told me my grandfather's old sea clock is worthless junk, so I came to see if you could fix it.
+Arthur examines a rusted nineteenth-century marine chronometer through a jeweler's loupe while Clara leans forward smiling with sparkling eyes | Arthur: You cannot buy parts for this anymore, so every single gear must be carved from raw metal.
+Winter snow outside. Clara wearing brass safety goggles runs a miniature metal lathe with golden sparks while Arthur watches over her shoulder | Arthur: Keep your breath steady, Clara, because a master clockmaker never rushes a delicate hairspring.
+Bright March sunlight. Arthur hands Clara a brass winding key. Clara turns the key in the mahogany box and the balance wheel springs to life, then Arthur holds out a canvas apron | Arthur: Welcome aboard as my official apprentice, and remember that we open at eight sharp.
+Chaos in the cobblestone square as townspeople argue under the Town Hall tower clock frozen at 3:14. Arthur grabs his leather tool chest while Clara looks up at the tower | Arthur: Grab your heavy wrenches, Clara, because we have a mechanical giant to wake up!
+Clara in brass goggles climbs a spiral of 142 creaky wooden stairs inside a dark brick tower holding a glowing brass lantern, carrying two toolboxes while Arthur rests against the wall with his cane | Clara: Almost to the top trapdoor, so just hold the lantern steady!
+Inside the cavernous wooden clock room a huge twig nest with seaweed and bottle caps is jammed in the gears. A plump grumpy Grumpy Pigeon glares from the brass wheel while Arthur and Clara gasp | Arthur: Great heavens, a stubborn pigeon family built a fortress right inside the main escapement!
+Clara kneels at a sunny stone window overlooking the harbor, breaking a peanut butter sandwich into crumbs for the Grumpy Pigeon and its family while Arthur inspects a broken brass wheel | Clara: Enjoy your lunch break by the window while we safely move your nest up to the high wooden rafters.
+Sunset in Oakhaven. The giant black clock hands sweep to twelve as the bronze bell rings, and cheering townspeople toss their hats in the square while Arthur and Clara watch from the tower | Clara: We are right back on time!
+Three years later. The shop window shows gold lettering reading Pendelton and Clara Master Clockmakers. Nine-year-old Leo in a dripping yellow raincoat holds a squished blue velvet box with a dented silver pocket watch while Clara in a gold-trimmed apron holds out a canvas apron | Leo: I dropped my great-grandpa's prized watch on the concrete sidewalk at school, so can you help me fix it?
+Leo on a tall stool at the maple workbench sneezes as a tiny silver screw launches off his tweezers while Clara looks on and Arthur chuckles in a rocking chair by the stove | Arthur: Relax, kid, because every great clockmaker loses at least three screws on their first day.
+Clara and Leo on hands and knees sweep a giant red horseshoe magnet on fishing line across the floorboards as a tiny screw snaps onto the magnet | Leo: Got it, and that magnetic fishing trip was awesome!
+Clara presses a hidden brass catch under the gear plate of the pocket watch revealing a secret compartment with an engraved anchor, while Leo gasps and Arthur leans in. Then the trio rush toward a rocky cliffside as storm clouds clear | Leo: My great-grandpa built a hidden compass inside this watch, and those coordinates point straight to Old Point Lighthouse!
+Sunset at the stone Old Point Lighthouse. Arthur and Clara slide a granite cornerstone carved with an anchor out of the wall while Leo holds up the compass watch, and a brass captain's chest sits in the hidden niche | Leo: It's the same anchor as in my great-grandpa's watch!
+Saturday morning in the sunlit clock shop. Leo in an oversized canvas apron and magnifying loupe sits at a small maple workbench with a carved Black Forest cuckoo clock and brass screwdriver | Leo: I'm ready to bring the silent wooden bird back to life.
+Mrs. Gable in her floral shawl sets her cuckoo clock on the mahogany counter while Leo opens the back panel with a brass flashlight and points at a torn paper bellows | Leo: Aha, one of the air bellows has a tear in it, so the little bird lost its voice!
+Leo at his workbench patches a bellows with thin kidskin leather and warm hide glue, with tweezers and a camel-hair brush laid out while Arthur inspects his work through round spectacles | Arthur: That is remarkably clean craftsmanship for a first-time repair, Leo.
+The repaired cuckoo clock with pine-cone weights hangs on the wall as its painted wooden bird pops out of the open door at noon while Mrs. Gable claps and Leo grins | Leo: Your feathered alarm clock is ready to sing right on schedule, Mrs. Gable!
+Afternoon sunlight on hundreds of ticking clocks. Arthur, Clara, and Leo share oatmeal raisin cookies at the workbench, Clara writes Leo's name in a leather ledger in gold ink, and Arthur raises a ceramic mug | Leo: What mysterious timepiece might walk through the front door next week?
+A fierce autumn nor'easter with giant gray waves against the harbor seawall. Captain Vance in a dripping navy peacoat bursts into the shop carrying a salt-crusted brass binnacle compass while Arthur, Clara, and Leo look up | Captain Vance: I need this magnetic compass balanced before my boat sails at midnight!
+Night shift under three brass lamps. Clara opens the compass dome, Arthur straightens the needle bearing, and Leo carefully refills the glass bowl with compass fluid | Clara: It points dead-on true north, not a fraction of a degree off.
+Midnight with lightning outside the rain-streaked windows. Captain Vance laughs in relief and shakes hands with Arthur, Clara, and Leo while Leo hangs a gleaming brass ship's bell with an anchor beside the shop door | Captain Vance: You saved my midnight rescue voyage across the stormy bay.
+Sparkling blue morning over Oakhaven Harbor after the storm. Arthur smiles at the front window with a hand on Clara's and Leo's shoulders while Clara polishes the antique chronometer and Leo arranges miniature screwdrivers | Arthur: I once worried my tools would gather dust, but today the shop beats stronger than ever.
+Noon in the cedar-lined shop as every clock chimes together. The silver pocket watch, lighthouse spyglass, and brass ship's bell sit on display while Leo pushes his loupe onto his forehead and Arthur and Clara stand smiling beside him | Leo: Are you ready for the afternoon rush?
+Early November morning. Two Harbor Divers in yellow wetsuits roll a dripping salvage crate into the shop holding a barnacle-covered bronze ship's clock with a carved dolphin on its bezel, while Leo touches the dolphin and Clara pulls on canvas gloves | Clara: We will bring this ocean relic back to life before opening night.
+Workshop montage of restoring the salt-fused clock. Leo scrapes barnacles with a wooden pick, Clara soaks plates in a citric acid bath, and Arthur polishes the pitted bronze case at a polishing wheel under heat lamps | Leo: Every single gear spins freely now!
+Leo holds up the snapped silver mermaid minute hand while Clara sketches the missing half on sterling silver and Arthur shakes his head over drawers of antique parts | Clara: We will carve the missing half ourselves.
+Clara saws out a silver mermaid tail fin with a jeweler's saw while Leo solders it onto the original shaft with a small torch, polishing the joint until it gleams | Leo: The mermaid looks brand new!
+Night at the Oakhaven Maritime Museum centennial. The bronze Starlight ship's clock glows on a velvet-roped pedestal as the curator turns a brass key and townspeople applaud while Arthur, Clara, and Leo hold a bronze plaque on stage | Leo: Restoring sunken treasure is even better than finding it.
+Winter stars over the harbor boardwalk. Arthur, Clara, and Leo lean on the wooden railing with steaming mugs of hot chocolate while Leo points a brass spyglass at the constellations | Leo: Two master clockmakers and one junior partner, and nobody in the world can stump us now!
+A winter morning in the shop. Arthur opens a crimson wax-sealed parchment invitation to the National Horological Exhibition while Clara and Leo lean in over the counter and Leo jumps up excited | Leo: We have to enter and show the whole country what Oakhaven clockmakers can do!
+Three clockmakers huddle over a giant blueprint of an octagonal mahogany astronomical clock with lunar dials, tide indicators, a mother-of-pearl star inlay, and a tiny lighthouse at the top under warm lamplight | Clara: All ninety-two gears will mesh without a single second of error.
+Night in the shop. Clara holds a snapped steel suspension spring above the silent astronomical clock while Leo stares in dismay and Arthur pulls a coil of blue spring steel from his tool chest beside a gas burner | Arthur: Real clockmakers never panic when we have steel, fire, and steady hands!
+Midnight forge. Arthur heats a strip of steel until it glows cherry red, Clara measures it with a micrometer, and Leo polishes it with emery paper by lamplight | Clara: Down to a thousandth of an inch.
+Pink dawn over the harbor. Arthur, Clara, and Leo high-five over the workbench as the astronomical clock runs with its moon dial turning and its tiny lighthouse flashing | Leo: We did it!
+Express train at dawn. Arthur in a neat tweed suit, Clara in a formal vest and gold-trimmed apron, and Leo in a neat jacket and bow tie sit by a window as Leo watches the Oakhaven coast fade into mist | Leo: I won't forget a single gear ratio.
+Booth Fourteen under the glass dome of the Grand Exhibition Hall. The octagonal mahogany clock glows with rotating mother-of-pearl stars while the Rival Clockmakers scoff across the aisle and Clara winds the clock with a brass key | Clara: Let them watch.
+Chief Judge Sterling adjusts his monocle over a leather clipboard while Leo, standing tall beside the mahogany cabinet, explains the lunar gear ratios | Leo: The tide dial works with gears alone, no battery and no microchip.
+Across the aisle the Rival Clockmakers' electronic tower clock jams and smokes while Arthur, Clara, and Leo file its jammed escapement wheel and oil it as the rival engineers watch | Arthur: Let us get this wheel turning before the chime test.
+Evening under the glass dome as fifty clocks chime. Chief Judge Sterling announces the winner at the podium while Leo holds the gleaming Golden Escapement Trophy high with Arthur and Clara beaming | Chief Judge Sterling: The Golden Escapement Trophy goes to Pendelton, Clara, and Leo!
+Early spring in the shop. Professor Finch bursts in with a moss-covered stone sundial base and a brass cube puzzle box with zodiac rings while Leo peers at it through his loupe and Arthur strokes his beard | Professor Finch: I found this buried beneath the sundial in the colonial ruins!
+Midnight in the shop. Clara aligns the zodiac rings on the brass cipher cube, Arthur turns tiny brass keys on four sides, and Leo watches while Professor Finch looks on breathlessly | Professor Finch: Is it opening?
+Calm turquoise bay at low tide. Arthur, Clara, Leo, and Professor Finch row into a sea cave beneath Eagle Cliff with glowing brass lanterns, and Professor Finch opens a sealed iron strongbox with a silver astrolabe on a dry stone shelf | Professor Finch: The whole collection will be donated to the Town Hall museum for everyone to enjoy!
+Afternoon in the clock shop. Mayor Jenkins presents Professor Finch, Arthur, Clara, and Leo with ceremonial keys to the city while Leo sets a small replica of the brass cipher cube beside the Golden Escapement Trophy on the display shelf | Clara: With three generations on the job, no secret can stay locked forever.
+Rainy May afternoon. Elena in her red scarf with a wooden violin case opens a velvet-lined case holding an antique Swiss music box on the counter while Arthur lifts the rosewood lid and Leo listens sympathetically | Elena: This music box belonged to my grandmother and I cannot perform without it.
+The open rosewood music box shows a brass cylinder covered in tiny steel pins while Arthur straightens bent steel comb teeth, Clara oils the governor fan, and Leo tests each note against a silver tuning fork | Leo: Four teeth were bent, and now every note sounds clear.
+Leo carves a tiny boxwood gear with miniature chisels under Arthur's guidance while Clara holds the lid of the music box, and the tiny ballerina figurine spins on the mirror | Leo: The ballerina is dancing again!
+Backstage at the Oakhaven Harbor Theater. Elena opens the restored music box with tears of joy as Arthur, Clara, and Leo stand beside her in their best coats, then Elena plays her violin under a golden spotlight | Elena: My grandmother's lullaby is ringing clean again.
+Spring morning in the shop. Elena hands Leo a shiny brass treble-clef pin for his canvas apron while Arthur pours coffee and cocoa and sunlight fills the cedar walls | Elena: I will return every summer to play a benefit concert for the clock tower fund.
+First Saturday of June. Ranger Maya in a green uniform and wide-brimmed hat stands in the shop doorway describing an abandoned forest weather station while Leo grabs his backpack and Arthur and Clara pack a canvas tool roll | Ranger Maya: That barometer clock has been frozen for fifty years.
+Forest trail lined with tall white pines and a stream. Ranger Maya leads Arthur, Clara, and Leo to an octagonal timber weather pavilion where Leo wipes moss from the glass dials of a brass-and-oak weather column while Clara unbolts the rear panel | Arthur: Restoring this will take clever outdoor engineering.
+Shady pine trees. Arthur, Clara, and Leo work at a portable folding workbench cleaning the weather mechanism, with Leo polishing shiny copper bellows and Clara fitting stainless steel cables | Leo: The bellows shine like new pennies!
+Sudden summer rain on the forest pavilion. The restored barometer needle dips toward Rain as Ranger Maya cheers and Arthur, Clara, and Leo share sandwiches and thermos tea under the wide wooden roof while a rainbow arches over the pine treetops | Ranger Maya: The weather station is chiming again!
+Sunlit forest trail. Ranger Maya awards Leo a Junior Forest Ranger patch next to his brass treble-clef pin on his canvas apron while Arthur and Clara walk beside them | Ranger Maya: Thank you for giving hikers a reliable weather guide again.
+Late July afternoon. Toby with curly red hair, a striped shirt, and a backpack steps hesitantly through the shop door clutching a broken toy robot clock and staring at the hundreds of ticking clocks | Toby: My favorite alarm clock stopped ticking, and I have no money for a real repair.
+Leo with his loupe over one eye opens the back of Toby's toy robot clock at the workbench, showing Toby how to slide a tiny gear onto its shaft as the robot's eyes light up | Toby: Do real clockmakers get to build amazing machines like this every day?
+Arthur hands Toby a small brass gear while Clara holds out a beginner practice clock kit and Leo shakes Toby's hand around the workbench | Leo: Welcome to the workshop, buddy, and don't sneeze when you hold the tiny screws!
+Saturday morning montage in the shop. Toby paints blue stars on a wooden desk clock dial as Leo guides him, Clara watches, and Arthur smiles from his rocking chair among hundreds of ticking clocks | Toby: Can I check my star clock against the master regulator?
+Golden end-of-summer evening outside the shop. Arthur, Clara, Leo, and Toby stand on the cobblestone sidewalk under the brass ship's bell and gold-lettered sign while the shop windows glow and the harbor sparkles behind them | Leo: What grand clockwork adventure awaits us when autumn arrives?
+October leaves swirl down the cobblestone street. Dr. Aris Thorne in a navy coat and scarf sets a velvet-wrapped brass orrery with frozen golden planets on the workbench while Arthur, Clara, Leo, and Toby in a blue apron crowd around under a brass lamp | Dr. Aris Thorne: Only this clockwork solar system can predict the shadow path of the eclipse.
+Five days of teamwork in the shop. Clara disassembles the brass planetary rings, Arthur straightens the central spindle, Leo polishes tiny Saturn rings, and Toby sorts microscopic screws on a velvet tray while Mrs. Gable sets down spiced cider and pumpkin tarts | Toby: Not a single part will go missing!
+A blackout in Oakhaven during an autumn squall. Arthur lights four brass storm lanterns in the dark shop while Leo and Toby hold the lighthouse spyglass and the ship's compass and Clara reads a lunar tide dial beside the window | Clara: The channel is deep enough, so bring them in on this bearing.
+Solar eclipse afternoon on the grassy hill beside Old Point Lighthouse. A crowd gathers around the gleaming brass orrery on a carved oak pedestal as the moon covers the sun, with Arthur, Clara, Leo, Toby, and Dr. Aris Thorne looking up | Dr. Aris Thorne: The model moves in exact step with the sky!
+Twilight in the shop. Toby hangs an engraved silver plaque beside the Golden Escapement Trophy, ship's bell, and spyglass while Arthur rocks in his chair and Clara explains gear ratios to Leo at the workbench | Leo: No matter how big the mystery, nothing can stop our four-person team.
+Snowy December morning. Arthur in a wool cardigan opens the cedar workshop door and freezes in astonishment as Clara, Leo, and Toby in aprons polish gears and brew coffee among grandfather clocks | Clara: Good morning, Mr. Pendelton, we wanted everything ready for your forty-seventh anniversary at the bench!
+The shop is packed with neighbors. Mayor Jenkins, Captain Vance, Mrs. Gable, Ranger Maya, Professor Finch, and Elena carry wrapped gifts, pastries, and framed photos while Mrs. Gable hugs Arthur and Arthur holds his glasses tightly | Captain Vance: Every ship in the harbor sets its compass by this shop!
+Snow-dusted cobblestone street. Mayor Jenkins pulls a velvet rope as a canvas cover drops to reveal a hand-carved wood and gold-leaf sign reading PENDELTON, CLARA, LEO & TOBY, OAKHAVEN'S MASTER CLOCKMAKERS, while Arthur, Clara, Leo, and Toby cheer on the steps | Leo: Look at our names on the sign!
+Warm shop interior with snow falling outside. Clara hands Arthur a solid gold winding key engraved with all four names beside the restored marine chronometer, the lighthouse spyglass, and Toby's painted star clock | Clara: Your hands taught us how to fix gears, and your kindness taught us how to care for people.
+Grand finale at noon. Arthur, Clara, Leo, and Toby stand side by side behind the maple workbench turning the gold winding key together as hundreds of clocks chime and the whole town smiles in the snow outside the window | Arthur: We saved it together, and as long as love and curiosity turn these gears, the heart of Oakhaven will beat forever.`};
+
+</script>
+<button id="mn" aria-label="Projects">☰</button><div id="dr"><button id="np" class="go">+ NEW PROJECT</button><div id="pl"></div><button id="dx">CLOSE</button></div>
+<h1>PANEL PRESS</h1><p class="s">Turn your story into comic pages. Runs on its own.</p>
+<label>Scenes (one per line, optional dialogue after a |)</label>
+<textarea id="story" maxlength="200000000" placeholder="Mia stands on a rooftop at sunset | I'm not afraid anymore"></textarea>
+<label>Art style (copy the look of your Canva pages)</label>
+<textarea id="style" maxlength="200000000" placeholder="vibrant comic book art, bold ink outlines, flat colors, halftone shading"></textarea>
+<label>Characters (one per line, Name: look)</label>
+<textarea id="chars" maxlength="200000000" placeholder="Mia: teenage girl, short black hair, red jacket, round glasses"></textarea>
+<label>Cast voices (one voice and pitch per character)</label>
+<div id="cast"></div>
+<label>Picture quality</label>
+<select id="res"><option value="0">360p (fast)</option><option value="1">720p</option><option value="2" selected>1440p (high)</option><option value="3">4K (very slow)</option></select>
+<label>Your Canva pages (become the first pages)</label>
+<input id="imp" type="file" accept="image/*" multiple>
+<button id="clr" aria-label="Clear all" style="background:var(--paper);color:var(--red);font-size:30px;padding:2px 16px;line-height:1.2">✖</button><button class="go" id="start">START</button><button id="stop">PAUSE</button><button id="sv">SAVE</button><button id="all">DOWNLOAD ALL</button>
+<div id="bar"><i></i></div><div id="st"></div><div id="grid"></div>
+<script>
+const $=s=>document.querySelector(s),P=window.Capacitor?.Plugins||{},sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const idb=new Promise(r=>{const q=indexedDB.open('pp',1);q.onupgradeneeded=()=>q.result.createObjectStore('k');q.onsuccess=()=>r(q.result)});
+const kvr=(m,k,v)=>idb.then(d=>new Promise(r=>{const s=d.transaction('k',m=='get'?'readonly':'readwrite').objectStore('k'),q=m=='get'?s.get(k):s.put(v,k);q.onsuccess=()=>r(q.result)}));
+let PID='p1';const kv=(m,k,v)=>kvr(m,PID+':'+k,v);const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const RES=[[640,360],[1280,720],[2560,1440],[3840,2160]],z=t=>RES[Math.max(0,+$('#res').value-(t/3|0))];
+const b64=b=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result.split(',')[1]);f.readAsDataURL(b)});
+let run=false,urls={},rec=null;
+const scenes=()=>$('#story').value.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>{const[a,...b]=l.split('|');return{s:a.trim(),d:b.join('|').trim()}});
+const chars=()=>$('#chars').value.split('\n').map(l=>{const[n,...d]=l.split(':');return{n:n.trim(),d:d.join(':').trim()}}).filter(c=>c.n&&c.d);
+function prompt(sc){const c=chars().filter(c=>sc.s.toLowerCase().includes(c.n.toLowerCase())).map(c=>c.n+' ('+c.d+')').join('; ');return[$('#style').value,c,sc.s,'comic book panel, no text, no speech bubbles'].filter(Boolean).join('. ')}
+let cast={};
+function who(i){const d=scenes()[i].d||scenes()[i].s,m=d.match(/^([^:]{1,20}):\s*(.*)$/);return m&&cast[m[1].trim()]?{n:m[1].trim(),t:m[2]}:{n:'',t:d}}
+function castUI(){const vs=speechSynthesis.getVoices(),o=vs.map(x=>`<option>${x.name}</option>`).join('');
+$('#cast').innerHTML=chars().map(c=>{cast[c.n]=cast[c.n]||{v:vs[0]&&vs[0].name,p:1};return `<div><b>${c.n}</b><select data-n="${c.n}" data-k="v">${o}</select><input type="range" min=".5" max="1.8" step=".1" value="${cast[c.n].p}" data-n="${c.n}" data-k="p"></div>`}).join('');
+document.querySelectorAll('#cast [data-n]').forEach(e=>{if(e.dataset.k=='v'&&cast[e.dataset.n].v)e.value=cast[e.dataset.n].v;e.onchange=e.oninput=()=>{cast[e.dataset.n][e.dataset.k]=e.dataset.k=='p'?+e.value:e.value;cfgSave()}})}
+speechSynthesis.onvoiceschanged=castUI;
+async function cfgSave(){await kv('put','cfg',{story:$('#story').value,style:$('#style').value,chars:$('#chars').value,cast,v:(window.STORY||{}).v||0})}
+['story','style','chars'].forEach(i=>$('#'+i).addEventListener('input',()=>{cfgSave();if(i=='chars')castUI()}));
+async function show(i){const b=await kv('get','img'+i);if(!b)return;urls[i]&&URL.revokeObjectURL(urls[i]);urls[i]=URL.createObjectURL(b);const c=$('#p'+i);if(c)c.querySelector('.th').innerHTML='<img src="'+urls[i]+'">'}
+function build(){const sc=scenes();$('#grid').innerHTML=sc.map((s,i)=>`<div class="pg" id="p${i}"><div class="th"><div class="e">Page ${i+1}</div></div><div>${s.d||s.s.slice(0,60)}</div><button onclick="say(${i})">Play</button><button onclick="recd(${i},this)">Record</button><button onclick="save(${i})">Download</button></div>`).join('');sc.forEach((_,i)=>show(i));count()}
+async function count(){const n=scenes().length;let d=0;for(let i=0;i<n;i++)if(await kv('get','img'+i))d++;$('#bar i').style.width=(n?d/n*100:0)+'%';return d}
+async function gen(){if(run)return;run=true;try{await P.KeepAwake?.keepAwake?.()}catch(e){}
+const sc=scenes(),seed=(await kv('get','seed'))||(await kv('put','seed',Math.floor(Math.random()*9e5)+1e5),await kv('get','seed'));
+for(let i=0;i<sc.length&&run;i++){if(await kv('get','img'+i))continue;
+for(let t=0;t<8&&run;t++){$('#st').textContent=`Drawing page ${i+1} of ${sc.length}`+(t?` (retry ${t})`:'');
+try{const r=await fetch('https://image.pollinations.ai/prompt/'+encodeURIComponent(prompt(sc[i]))+`?width=${z(t)[0]}&height=${z(t)[1]}&model=flux&nologo=true&seed=${seed}`);const b=await r.blob();if(!r.ok||!b.type.startsWith('image'))throw 0;await kv('put','img'+i,b);await show(i);await count();break}catch(e){await sleep(6000*(t+1))}}}
+run=false;try{await P.KeepAwake?.allowSleep?.()}catch(e){}$('#st').textContent=(await count())==sc.length?'All pages done. Tap SAVE ALL.':'Paused. Tap START to continue.'}
+$('#clr').onclick=async()=>{if(!confirm('Clear the story, style and characters? Your drawn pages stay saved.'))return;['story','style','chars'].forEach(i=>$('#'+i).value='');cast={};castUI();build();$('#st').textContent='Cleared. Type or paste a new story. Reopen the app to bring the preloaded story back.'};
+$('#start').onclick=()=>{build();gen()};$('#stop').onclick=()=>{run=false};
+const TITLES=['the empty workbench','a box in the rain','the impossible repair','winter lessons','a new apprentice','the clock stops','the long climb','the nest in the gears','a peaceful solution','oakhaven keeps time','broken watch'];
+async function blank(f){const b=await createImageBitmap(f),c=document.createElement('canvas');c.width=40;c.height=30;const x=c.getContext('2d');x.drawImage(b,0,0,40,30);const d=x.getImageData(0,0,40,30).data;for(let i=0;i<d.length;i+=4)if(d[i]<250||d[i+1]<250||d[i+2]<250)return false;return true}
+$('#imp').onchange=async e=>{const f=[...e.target.files];let n=0,skip=[];
+for(const file of f){const nm=file.name.replace(/\.[^.]+$/,'').toLowerCase();
+if(await blank(file)){skip.push(file.name);continue}
+if(nm.includes('keepers of time')){await kv('put','cover',file);continue}
+let i=TITLES.findIndex(t=>nm.includes(t));if(i>=0)i=Math.min(i,10);else if(/^\d+$/.test(nm))i=+nm-1;else{i=n}
+await kv('put','img'+i,file);n++}
+build();$('#st').textContent=n+' pages imported'+(skip.length?'. Skipped blank: '+skip.join(', '):'')+'. Tap START to draw the missing pages.'};
+async function say(i){const a=await kv('get','aud'+i);if(a){new Audio(URL.createObjectURL(a)).play();return}const w=who(i),k=cast[w.n]||{},u=new SpeechSynthesisUtterance(w.t);u.voice=speechSynthesis.getVoices().find(v=>v.name==k.v)||null;u.pitch=k.p||1;speechSynthesis.speak(u)}
+async function recd(i,btn){if(rec){rec.stop();return}try{const s=await navigator.mediaDevices.getUserMedia({audio:true}),ch=[];rec=new MediaRecorder(s);rec.ondataavailable=e=>ch.push(e.data);rec.onstop=async()=>{await kv('put','aud'+i,new Blob(ch,{type:rec.mimeType}));s.getTracks().forEach(t=>t.stop());rec=null;btn.textContent='Record';$('#st').textContent='Voice saved for page '+(i+1)};rec.start();btn.textContent='Stop'}catch(e){$('#st').textContent='Microphone blocked. Allow it in Android settings.'}}
+async function draw(i){const b=await kv('get','img'+i),im=await createImageBitmap(b),c=document.createElement('canvas');c.width=im.width;c.height=im.height;const x=c.getContext('2d');x.drawImage(im,0,0);const t=scenes()[i].d;
+if(t){const fs=Math.round(c.width/24),w=c.width-fs*2;x.font=`bold ${fs}px "Comic Sans MS",sans-serif`;let L=[],l='';t.split(' ').forEach(wd=>{if(x.measureText(l+wd).width>w-fs*1.5){L.push(l);l=''}l+=wd+' '});L.push(l);const h=L.length*fs*1.25+fs,y=c.height-h-fs;x.fillStyle='#fffbe8';x.strokeStyle='#1b1a2e';x.lineWidth=fs/6;x.beginPath();x.roundRect(fs,y,w,h,fs/2);x.fill();x.stroke();x.fillStyle='#1b1a2e';x.textBaseline='top';L.forEach((s,k)=>x.fillText(s,fs*1.75,y+fs/2+k*fs*1.25))}
+return c.toDataURL('image/jpeg',.92)}
+const nm=()=>((window.PROJ||[]).find(p=>p.id==PID)||{name:'Comic'}).name.replace(/[^\w\- ]+/g,'').trim()||'Comic';
+async function put(path,data,enc){const f=P.Filesystem,o=enc?{encoding:enc}:{};try{await f.writeFile({path:'PanelPress/'+nm()+'/'+path,data,directory:'DOCUMENTS',recursive:true,...o});return 1}catch(e){try{const w=await f.writeFile({path:'tmp/'+path,data,directory:'CACHE',recursive:true,...o});await P.Share.share({title:path,url:w.uri});return 2}catch(e2){return 0}}}
+async function save(i,quiet){if(!(await kv('get','img'+i))){$('#st').textContent='Page '+(i+1)+' is not drawn yet.';return 0}const u=await draw(i);
+if(!P.Filesystem){const a=document.createElement('a');a.href=u;a.download=`page${i+1}.jpg`;a.click();return 1}
+const r=await put(`page${i+1}.jpg`,u.split(',')[1]),a=await kv('get','aud'+i);if(a&&r==1)await put(`page${i+1}-voice.${a.type.includes('mp4')?'m4a':'webm'}`,await b64(a));
+if(!quiet)$('#st').textContent=r==1?'Downloaded to Documents/PanelPress/'+nm():r==2?'Pick Save to Files in the share menu.':'Could not save. Allow file access for the app in Android settings.';return r}
+$('#all').onclick=async()=>{const n=scenes().length;let ok=0;for(let i=0;i<n;i++){const r=await save(i,1);if(r==2){$('#st').textContent='Documents is blocked on this phone. Use each page Download button and pick Save to Files.';return}if(r==1)ok++}
+if(P.Filesystem)await put('pages.json',JSON.stringify(scenes().map((s,i)=>{const w=who(i);return{d:s.d,t:w.t,p:(cast[w.n]||{}).p||1}})),'utf8');
+$('#st').textContent=ok+' pages downloaded to Documents/PanelPress/'+nm()};
+$('#sv').onclick=async()=>{await cfgSave();$('#st').textContent='Saved in the app. Your pages and settings stay even if you close the app.'};
+$('#res').onchange=()=>kv('put','res',$('#res').value);
+function projUI(){$('#pl').innerHTML=window.PROJ.map(p=>`<button style="${p.id==PID?'background:var(--red);color:#fff':''}" onclick="sw('${p.id}')">${esc(p.name)}</button>`).join('')}
+async function sw(id){await kvr('put','cur',id);location.reload()}
+$('#np').onclick=async()=>{const n=prompt('Name your new comic');if(!n)return;const id='p'+Date.now();window.PROJ.push({id,name:n});await kvr('put','projects',window.PROJ);await sw(id)};
+$('#mn').onclick=()=>$('#dr').classList.toggle('o');$('#dx').onclick=()=>$('#dr').classList.remove('o');
+let tx=0,ty=0;document.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY});document.addEventListener('touchend',e=>{const t=e.changedTouches[0];if(tx>innerWidth-40&&ty<220&&tx-t.clientX>50)$('#dr').classList.add('o');if($('#dr').classList.contains('o')&&t.clientX-tx>60)$('#dr').classList.remove('o')});
+(async()=>{let L=await kvr('get','projects');if(!L||!L.length){L=[{id:'p1',name:'Oakhaven Clockmakers'}];await kvr('put','projects',L)}window.PROJ=L;PID=(await kvr('get','cur'))||'p1';if(!L.find(x=>x.id==PID))PID='p1';
+const S=PID=='p1'?(window.STORY||{}):{},c=await kv('get','cfg');
+if(c&&(PID!='p1'||c.v===(S.v||0))){$('#story').value=c.story;$('#style').value=c.style;$('#chars').value=c.chars;cast=c.cast||{}}else{$('#story').value=S.scenes||(c&&c.story)||'';$('#style').value=S.style||(c&&c.style)||'';$('#chars').value=S.chars||(c&&c.chars)||''}
+$('#res').value=(await kv('get','res'))||'2';castUI();build();cfgSave();projUI()})();
+</script></body></html>
